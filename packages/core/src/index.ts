@@ -19,6 +19,23 @@ export type {
   CacheEvictedPayload,
 } from './lib/hotKeyCache.js';
 
+export { VersionTracker } from './lib/versionTracker.js';
+export type { WriteRecord } from './lib/versionTracker.js';
+
+export { ReadBarrier } from './lib/readBarrier.js';
+
+export { ConsistencyCoordinator } from './lib/consistencyCoordinator.js';
+export type {
+  ConsistencyPolicy,
+  ConsistencyConfig,
+  ReadContext,
+  ReadResult,
+  ConsistencyViolation,
+} from './lib/consistencyCoordinator.js';
+
+export { withConsistency } from './lib/withConsistency.js';
+export type { ConsistencyOperation } from './lib/withConsistency.js';
+
 export const VERSION = '0.1.0';
 
 
