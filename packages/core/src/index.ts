@@ -43,6 +43,21 @@ export type { MergeStrategyFn, ShardError, CrossShardResult } from './lib/scatte
 export { mergeUnion, mergeSum, mergeCount, mergeAvg, mergeTopK, mergeSort } from './lib/mergeStrategies.js';
 export type { ShardPayload, MergeOptions } from './lib/mergeStrategies.js';
 
+export { NPlusOneGuard, DetectionEngine, BatchQueue } from './lib/nplusonequery/index.js';
+export type {
+  QueryMeta,
+  QuerySignature,
+  BatchEntry,
+  BatchExecutorFn,
+  GuardOptions,
+  GuardMetrics,
+} from './lib/nplusonequery/index.js';
+export { createPrismaMiddleware, registerPrismaLoader } from './lib/nplusonequery/index.js';
+export type { PrismaMiddlewareParams, PrismaNextFn } from './lib/nplusonequery/index.js';
+export { createLoader, createLoaderAndRegister, withGuard } from './lib/nplusonequery/index.js';
+export { MetricsReporter } from './lib/nplusonequery/index.js';
+export type { MetricsReport } from './lib/nplusonequery/index.js';
+
 export const VERSION = '0.1.0';
 
 

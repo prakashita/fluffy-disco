@@ -1,7 +1,6 @@
-// Core
-export { NPlusOneGuard }          from './Cores/Nplusonequery';
-export { DetectionEngine }        from './Cores/Detectionengine';
-export { BatchQueue }             from './Cores/Batchqueue';
+export { NPlusOneGuard }    from './nplusOneQuery.js';
+export { DetectionEngine }  from './detectionEngine.js';
+export { BatchQueue }       from './batchQueue.js';
 export type {
   QueryMeta,
   QuerySignature,
@@ -9,24 +8,22 @@ export type {
   BatchExecutorFn,
   GuardOptions,
   GuardMetrics,
-}                                 from './Cores/Types';
+}                           from './types.js';
 
-// Integrations
 export {
   createPrismaMiddleware,
   registerPrismaLoader,
-}                                 from './Prisma';
+}                           from './prisma.js';
 export type {
   PrismaMiddlewareParams,
   PrismaNextFn,
-}                                 from './Prisma';
+}                           from './prisma.js';
 
 export {
   createLoader,
   createLoaderAndRegister,
   withGuard,
-}                                 from './Graphql';
+}                           from './graphql.js';
 
-// Monitoring
-export { MetricsReporter }        from './Metricsreporter';
-export type { MetricsReport }     from './Metricsreporter';
+export { MetricsReporter }  from './metricsReporter.js';
+export type { MetricsReport } from './metricsReporter.js';

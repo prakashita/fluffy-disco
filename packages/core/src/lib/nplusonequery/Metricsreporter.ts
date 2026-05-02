@@ -1,17 +1,5 @@
-import { NPlusOneGuard } from './Cores/Nplusonequery';
+import { NPlusOneGuard } from './nplusOneQuery.js';
 
-/**
- * MetricsReporter
- * ────────────────
- * Periodically logs guard metrics to the console (or a custom sink).
- * Useful during development or when you don't have a full APM setup.
- *
- * Usage:
- *   const reporter = new MetricsReporter(guard, { intervalMs: 10_000 });
- *   reporter.start();
- *   // ...
- *   reporter.stop();
- */
 export class MetricsReporter {
   private readonly guard: NPlusOneGuard;
   private readonly intervalMs: number;
@@ -50,7 +38,6 @@ export class MetricsReporter {
     }
   }
 
-  /** Emit one report immediately (no interval). */
   report(): MetricsReport {
     const m = this.guard.getMetrics();
     return {
