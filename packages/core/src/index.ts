@@ -1,5 +1,6 @@
 import { Client } from 'pg';
 import { hotCache } from './lib/hotKeyCache.js';
+import { ScatterGatherCoordinator, MergeStrategyFn, CrossShardResult } from './lib/scatterGatherCoordinator.js';
 
 // Re-export the HotKeyCache library so consumers can use it directly:
 // import { HotKeyCache, hotCache, FrequencyCounter } from '@fluffy-disco/core'
@@ -35,6 +36,12 @@ export type {
 
 export { withConsistency } from './lib/withConsistency.js';
 export type { ConsistencyOperation } from './lib/withConsistency.js';
+
+export { ScatterGatherCoordinator } from './lib/scatterGatherCoordinator.js';
+export type { MergeStrategyFn, ShardError, CrossShardResult } from './lib/scatterGatherCoordinator.js';
+
+export { mergeUnion, mergeSum, mergeCount, mergeAvg, mergeTopK, mergeSort } from './lib/mergeStrategies.js';
+export type { ShardPayload, MergeOptions } from './lib/mergeStrategies.js';
 
 export const VERSION = '0.1.0';
 
@@ -87,6 +94,14 @@ export class ShardCoordinator {
     );
 
     return results;
+  }
+
+  async scatter<T, R>(
+    queryFn: (shardId: string) => Promise<T[]>,
+    mergeFn: MergeStrategyFn<T, R>,
+  ): Promise<CrossShardResult<T, R>> {
+    const engine = new ScatterGatherCoordinator(this.shardConfig);
+    return engine.scatter(queryFn, mergeFn);
   }
 }
 
